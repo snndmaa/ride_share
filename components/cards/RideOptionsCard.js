@@ -31,14 +31,14 @@ const data = [
 ]
 
 //This goes up when we have surge pricing
-const SURGE_CHARGE_RATE = 1.5
+const SURGE_CHARGE_RATE = 1.2
 
 const RideOptionsCard = () => {
 
   const navigation = useNavigation()
   const [selected, setSelected] = useState(null)
   const travelTimeInformation = useSelector(selectTravelTimeInformation)
-  console.log(travelTimeInformation)
+  // console.log(travelTimeInformation)
 
   return (
     <SafeAreaView style={ tw`bg-white flex-grow` }>
@@ -72,14 +72,14 @@ const RideOptionsCard = () => {
               <Text style={ tw`text-xl font-semibold` }>{title}</Text>
               <Text>{travelTimeInformation?.duration?.text}</Text>
             </View>
-            <Text style={ tw`text-xl` }>
+            <Text style={ tw`text-xl text-green-800` }>
 
               {/* {new Intl.NumberFormat('en-gb', {
                 style: 'currency',
                 currency: 'GBP'
               }).format(travelTimeInformation?.duration?.value * SURGE_CHARGE_RATE * multiplier) / 100
               } */}
-              ${travelTimeInformation?.duration?.value * SURGE_CHARGE_RATE * multiplier / 100}
+              {parseFloat((travelTimeInformation?.duration?.value * SURGE_CHARGE_RATE * multiplier / 100) * 43).toFixed(2)}Rs
 
             </Text>
           </TouchableOpacity>
@@ -89,6 +89,7 @@ const RideOptionsCard = () => {
       <View style={ tw`mt-auto border-t border-gray-200` }>
           <TouchableOpacity 
           disabled={!selected} 
+          onPress={() => {navigation.navigate('RideCard')}}
           style={ tw`bg-black py-3 m-3 ${!selected && 'bg-gray-300'}` }>
             <Text style={ tw`text-center text-white text-xl` }>Choose {selected?.title}</Text>
           </TouchableOpacity>

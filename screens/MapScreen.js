@@ -7,12 +7,14 @@ import { useNavigation } from '@react-navigation/native'
 import Map from '../components/Map'
 import NavigateCard from '../components/cards/NavigateCard'
 import RideOptionsCard from '../components/cards/RideOptionsCard'
+import RideCard from '../components/cards/RideCard'
 
 
 const MapScreen = () => {
 
   const Stack = createNativeStackNavigator()
   const navigation = useNavigation()
+
 
   return (
     <View>
@@ -40,6 +42,13 @@ const MapScreen = () => {
           <Stack.Screen
             name='RideOptionsCard'
             component={RideOptionsCard}
+            options={{
+              headerShown: false,
+            }}
+          />
+          <Stack.Screen
+            name='RideCard'
+            component={RideCard}
             options={{
               headerShown: false,
             }}

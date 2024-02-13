@@ -14,55 +14,59 @@ import NavFavourites from '../components/NavFavourites'
 const HomeScreen = () => {
 
   const dispatch = useDispatch()
+  try {
+    return (
+      <SafeAreaView style={tw`bg-white h-full`}>
+        <View style={tw`p-5`}>
+          <Image
+            style={{
+              width: 100,
+              height: 100,
+              resizeMode: 'contain'
+            }}
+            source={logo}
+          />
+  
+          <GooglePlacesAutocomplete
+            placeholder='Where From?'
+            styles={{
+              container: {
+                flex: 0,
+              },
+              textInput: {
+                fontSize: 18,
+              },
+            }}
+            onPress={(data, details = null) => {
+              dispatch(setOrigin({
+                location: details.geometry.location,
+                description: data.description
+              }))
+  
+              dispatch(setDestination(null))
+  
+            }}
+            fetchDetails={true}
+            returnKeyType={'search'}
+            enablePoweredByContainer={false}
+            minLength={2}
+            query={{
+              key: GOOGLE_MAPS_API_KEY,
+              language: 'en'
+            }}
+            nearbyPlacesAPI='GooglePlacesSearch'
+            debounce={400}  // Only after you stop typing for 0.4ms does action occur
+          />
+  
+          <NavOptions/>
+          <NavFavourites/>
+        </View>
+      </SafeAreaView>
+    )
+  } catch (error) {
+    console.log(error)
+  }
 
-  return (
-    <SafeAreaView style={tw`bg-white h-full`}>
-      <View style={tw`p-5`}>
-        <Image
-          style={{
-            width: 100,
-            height: 100,
-            resizeMode: 'contain'
-          }}
-          source={logo}
-        />
-
-        <GooglePlacesAutocomplete
-          placeholder='Where From?'
-          styles={{
-            container: {
-              flex: 0,
-            },
-            textInput: {
-              fontSize: 18,
-            },
-          }}
-          onPress={(data, details = null) => {
-            dispatch(setOrigin({
-              location: details.geometry.location,
-              description: data.description
-            }))
-
-            dispatch(setDestination(null))
-
-          }}
-          fetchDetails={true}
-          returnKeyType={'search'}
-          enablePoweredByContainer={false}
-          minLength={2}
-          query={{
-            key: GOOGLE_MAPS_API_KEY,
-            language: 'en'
-          }}
-          nearbyPlacesAPI='GooglePlacesSearch'
-          debounce={400}  // Only after you stop typing for 0.4ms does action occur
-        />
-
-        <NavOptions/>
-        <NavFavourites/>
-      </View>
-    </SafeAreaView>
-  )
 }
 
 export default HomeScreen

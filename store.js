@@ -1,9 +1,15 @@
 import { configureStore } from '@reduxjs/toolkit'
-import navReducer from './slices/navSlice'
 
+import navReducer from './slices/navSlice'
+import loginReducer from './slices/loginSlice'
+import signupReducer from './/slices/signupSlice'
+import authReducer from './slices/authSlice'
 
 export const store = configureStore({
-  reducer: {
+  reducer: {        
+    auth: authReducer,
+    login: loginReducer,
+    signup: signupReducer,
     nav: navReducer,
   },
 })
