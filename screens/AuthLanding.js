@@ -4,6 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { useNavigation } from '@react-navigation/native'
 
 import Classic from '../components/buttons/Classic'
+import Logo from '../components/shared/Logo'
 
 const AuthLanding = () => {
   const navigation = useNavigation()
@@ -12,14 +13,13 @@ const AuthLanding = () => {
   return (
     <SafeAreaView style={[styles.Container]}>
       <View style={styles.HeaderWrap}>
-        <Text style={styles.HeaderText1}>Mauxi</Text>
+        <Logo/>
       </View>
 
       <View style={styles.Divider}/>
 
       <View style={styles.SloganWrap}>
-        <Text style={styles.SloganText1}>Ride with Mauxi.</Text>
-        <Text style={styles.SloganText2}>Experience Convenience.</Text>
+        <Text style={styles.SloganText1}>Commute at your convenience</Text>
       </View>
 
       <Classic text='Log in' width={273} height={42} margint={200} color='#4169E1' textcolor='#FFFFFF' handleOnPress={() => navigation.navigate('Login')}/>
@@ -35,6 +35,7 @@ const styles = StyleSheet.create({
     Container: {
         flex: 1,
         alignItems: 'center',
+        backgroundColor: '#FFFFFF',
     },
     HeaderWrap:{
       flexDirection: 'row',

@@ -7,7 +7,8 @@ import { useNavigation } from '@react-navigation/native'
 import Map from '../components/Map'
 import NavigateCard from '../components/cards/NavigateCard'
 import RideOptionsCard from '../components/cards/RideOptionsCard'
-import RideCard from '../components/cards/RideCard'
+import FindDriverCard from '../components/cards/FindDriverCard'
+import EnRouteCard from '../components/cards/EnRouteCard'
 
 
 const MapScreen = () => {
@@ -47,8 +48,15 @@ const MapScreen = () => {
             }}
           />
           <Stack.Screen
-            name='RideCard'
-            component={RideCard}
+            name='FindDriverCard'
+            component={FindDriverCard}
+            options={{
+              headerShown: false,
+            }}
+          />
+          <Stack.Screen
+            name='EnRouteCard'
+            component={EnRouteCard}
             options={{
               headerShown: false,
             }}

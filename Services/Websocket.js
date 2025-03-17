@@ -1,3 +1,5 @@
+import { BASE_URL } from "../util"
+
 class WebSocketService {
   constructor() {
     this.websocket = null;
@@ -6,7 +8,7 @@ class WebSocketService {
   }
 
   connect() {
-    this.websocket = new WebSocket('ws://10.231.6.34:5000/v1/user');
+    this.websocket = new WebSocket(`ws://${BASE_URL}/user`);
     this.websocket.onopen = this.onOpen;
     this.websocket.onmessage = this.onMessage;
     this.websocket.onerror = this.onError;

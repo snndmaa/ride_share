@@ -4,6 +4,7 @@ import navReducer from './slices/navSlice'
 import loginReducer from './slices/loginSlice'
 import signupReducer from './/slices/signupSlice'
 import authReducer from './slices/authSlice'
+import rideReducer from './slices/rideSlice'
 
 export const store = configureStore({
   reducer: {        
@@ -11,6 +12,7 @@ export const store = configureStore({
     login: loginReducer,
     signup: signupReducer,
     nav: navReducer,
+    ride: rideReducer,
   },
 })
 

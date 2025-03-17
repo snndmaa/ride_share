@@ -1,10 +1,10 @@
 import AsyncStorage from '@react-native-async-storage/async-storage'
-
+import { BASE_URL } from '../util'
 
 class BackendService{
     
     constructor (){
-        this.baseURL = 'http://192.168.148.147:5000/v1'
+        this.baseURL = `http://${BASE_URL}`
     }
 
     async makeRequest (endpoint, method='GET', data=null, token=null){
@@ -54,7 +54,6 @@ class BackendService{
 
     // Profile
     async getProfile (id, token) {
-        console.log(token)
         return await this.makeRequest(`driver/profile/${id}`, 'GET', null, token)
     }
 

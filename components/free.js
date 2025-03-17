@@ -9,13 +9,14 @@ import { GOOGLE_MAPS_API_KEY } from '@env'
 import { selectDestination, selectOrigin, setTravelTimeInformation, selectTravelTimeInformation } from '../slices/navSlice'
 import carMarker from '../assets/markers/red_car.png'
 import webSocketService from '../Services/Websocket'
+import { BASE_URL } from '../util'
 
 
 const Map = () => {
   const [drivers, setDrivers] = useState([]);
 
   useEffect(() => {
-    const ws = new WebSocket('ws://192.168.148.147:5000/v1/user')
+    const ws = new WebSocket(`ws://${BASE_URL}user`)
 
     ws.onopen = () => {
       console.log('websocket connection opened')

@@ -9,7 +9,7 @@ import NavOptions from '../components/NavOptions'
 import logo from '../assets/logo1.png'
 import { setDestination, setOrigin } from '../slices/navSlice'
 import NavFavourites from '../components/NavFavourites'
-
+import Logo from '../components/shared/Logo'
 
 const HomeScreen = () => {
 
@@ -18,14 +18,7 @@ const HomeScreen = () => {
     return (
       <SafeAreaView style={tw`bg-white h-full`}>
         <View style={tw`p-5`}>
-          <Image
-            style={{
-              width: 100,
-              height: 100,
-              resizeMode: 'contain'
-            }}
-            source={logo}
-          />
+          <Logo fontSize={40}/>
   
           <GooglePlacesAutocomplete
             placeholder='Where From?'
@@ -38,6 +31,7 @@ const HomeScreen = () => {
               },
             }}
             onPress={(data, details = null) => {
+              console.log(data)
               dispatch(setOrigin({
                 location: details.geometry.location,
                 description: data.description

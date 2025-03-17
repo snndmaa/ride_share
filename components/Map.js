@@ -33,6 +33,7 @@ const Map = () => {
 
   const origin = useSelector(selectOrigin)
   const destination = useSelector(selectDestination)
+  console.log(origin)
 const tti = useSelector(selectTravelTimeInformation)
   const mapRef = useRef(null)
   const dispatch = useDispatch()

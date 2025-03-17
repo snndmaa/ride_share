@@ -28,6 +28,7 @@ const NavigateCard = () => {
             returnKeyType={'search'}
             minLength={2}
             onPress={( data, details = null ) => {
+              console.log(data)
               dispatch(
                 setDestination({
                   location: details.geometry.location,

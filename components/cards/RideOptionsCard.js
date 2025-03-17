@@ -37,6 +37,7 @@ const RideOptionsCard = () => {
 
   const navigation = useNavigation()
   const [selected, setSelected] = useState(null)
+  const [price, setPrice] = useState(null)
   const travelTimeInformation = useSelector(selectTravelTimeInformation)
   // console.log(travelTimeInformation)
 
@@ -56,7 +57,10 @@ const RideOptionsCard = () => {
         keyExtractor={(item) => item.id}
         renderItem={({ item: { id, title, multiplier, image }, item }) => (     //!!!!!!!!!
           <TouchableOpacity
-            onPress={() => setSelected(item)}
+            onPress={() => {
+              setSelected(item)
+              setPrice(parseFloat((travelTimeInformation?.duration?.value * SURGE_CHARGE_RATE * multiplier / 100) * 43).toFixed(2))
+            }}
             style={ tw`flex-row justify-between items-center px-10
             ${id  === selected?.id && 'bg-gray-200'}` }
           >
@@ -89,7 +93,7 @@ const RideOptionsCard = () => {
       <View style={ tw`mt-auto border-t border-gray-200` }>
           <TouchableOpacity 
           disabled={!selected} 
-          onPress={() => {navigation.navigate('RideCard')}}
+          onPress={() => {navigation.navigate('FindDriverCard', {price})}}
           style={ tw`bg-black py-3 m-3 ${!selected && 'bg-gray-300'}` }>
             <Text style={ tw`text-center text-white text-xl` }>Choose {selected?.title}</Text>
           </TouchableOpacity>
